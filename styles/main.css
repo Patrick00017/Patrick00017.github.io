@@ -1628,10 +1628,7 @@ a {
   margin: 4px 8px;
 }
 
-      .sidebar {
-        width: undefined;
-      }
-      .main-container {
-        margin-left: undefined;
+      .post-item .right .feature-container {
+        border-radius: 5px;
       }
     
