@@ -1629,10 +1629,10 @@ a {
 }
 
       .sidebar {
-        width: 38.2%;
+        width: 25%;
       }
       .main-container {
-        margin-left: 38.2%;
+        margin-left: 25%;
       }
     
       .post-item .right .feature-container {
