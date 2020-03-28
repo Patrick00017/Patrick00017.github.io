@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>标签列表 | Patrick Lifecycle</title>
+<title>SpringBoot学习过程中的一些问题（持续更新） | Patrick Lifecycle</title>
 <meta name="description" content="up up up">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -90,12 +90,53 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <h2 class="tag-list-title">标签列表</h2>
-          <div class="tags-container">
+          <div class="post-detail">
+            <h2 class="post-title">SpringBoot学习过程中的一些问题（持续更新）</h2>
+            <div class="post-date">2020-03-28</div>
             
-              <a class="tag" href="https://patrick00017.github.io/tag/QTc8MqwbS/">Spring Boot</a>
+              <div class="feature-container" style="background-image: url('https://patrick00017.github.io//post-images/springboot-xue-xi-guo-cheng-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin.jpg')">
+              </div>
             
+            <div class="post-content">
+              <h2 id="1responsebody无法使用">1.@ResponseBody无法使用</h2>
+<pre><code>解决办法：
+在pom.xml中添加下列依赖：
+&lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+        &lt;version&gt;2.9.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-core&lt;/artifactId&gt;
+        &lt;version&gt;2.9.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;
+        &lt;version&gt;2.9.5&lt;/version&gt;
+</code></pre>
+</dependency>
+<h2 id="2官方文档查询">2.官方文档查询</h2>
+<p>解决办法：使用 <strong>ctrl+F</strong> 进行文档搜索</p>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://patrick00017.github.io/tag/QTc8MqwbS/" class="tag">
+                    Spring Boot
+                  </a>
+                
+              </div>
+            
+            
+
+            
+
           </div>
+
         </div>
       </div>
     </div>

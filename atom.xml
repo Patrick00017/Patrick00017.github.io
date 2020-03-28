@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://patrick00017.github.io/</id>
     <title>Patrick Lifecycle</title>
-    <updated>2020-03-28T13:29:52.291Z</updated>
+    <updated>2020-03-28T13:43:17.196Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://patrick00017.github.io/"/>
     <link rel="self" href="https://patrick00017.github.io/atom.xml"/>
@@ -10,4 +10,34 @@
     <logo>https://patrick00017.github.io/images/avatar.png</logo>
     <icon>https://patrick00017.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Patrick Lifecycle</rights>
+    <entry>
+        <title type="html"><![CDATA[SpringBoot学习过程中的一些问题（持续更新）]]></title>
+        <id>https://patrick00017.github.io/post/springboot-xue-xi-guo-cheng-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin/</id>
+        <link href="https://patrick00017.github.io/post/springboot-xue-xi-guo-cheng-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin/">
+        </link>
+        <updated>2020-03-28T13:33:21.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="1responsebody无法使用">1.@ResponseBody无法使用</h2>
+<pre><code>解决办法：
+在pom.xml中添加下列依赖：
+&lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+        &lt;version&gt;2.9.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-core&lt;/artifactId&gt;
+        &lt;version&gt;2.9.5&lt;/version&gt;
+    &lt;/dependency&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+        &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;
+        &lt;version&gt;2.9.5&lt;/version&gt;
+</code></pre>
+</dependency>
+<h2 id="2官方文档查询">2.官方文档查询</h2>
+<p>解决办法：使用 <strong>ctrl+F</strong> 进行文档搜索</p>
+]]></content>
+    </entry>
 </feed>
