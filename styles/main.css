@@ -1628,6 +1628,13 @@ a {
   margin: 4px 8px;
 }
 
+      .sidebar {
+        width: 38.2%;
+      }
+      .main-container {
+        margin-left: 38.2%;
+      }
+    
       .post-item .right .feature-container {
         border-radius: 5px;
       }
