@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" >
+
+<title>安卓学习中的一些问题（持续更新） | Patrick Lifecycle</title>
+<meta name="description" content="up up up">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://patrick00017.github.io/favicon.ico?v=1585635002186">
+<link rel="stylesheet" href="https://patrick00017.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+  </head>
+  <body>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://patrick00017.github.io">
+        <img src="https://patrick00017.github.io/images/avatar.png?v=1585635002186" class="site-logo">
+        <h1 class="site-title">Patrick Lifecycle</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+    <div class="site-description">
+      up up up
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Patrick</a>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">安卓学习中的一些问题（持续更新）</h2>
+            <div class="post-date">2020-03-31</div>
+            
+              <div class="feature-container" style="background-image: url('https://patrick00017.github.io/post-images/an-zhuo-xue-xi-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin.jpg')">
+              </div>
+            
+            <div class="post-content">
+              <h3 id="1轮播图的实现">1.轮播图的实现</h3>
+<ul>
+<li>
+<p>基础实现：</p>
+<p>在布局文件中加入 <strong>ViewPager</strong></p>
+<pre><code class="language-xml">&lt;androidx.viewpager.widget.ViewPager    
+ android:id=&quot;@+id/looper&quot;  
+ android:layout_width=&quot;match_parent&quot;   
+ android:layout_height=&quot;200dp&quot;/&gt;
+</code></pre>
+<p>创建<strong>PageLooperAdapter</strong>适配器类，继承自<strong>PageAdapter</strong> ，然后重载两个方法，分别是 <strong>instantiateItem</strong> 和 <strong>destroyItem</strong> ，代码如下所示：</p>
+<p>首先创建成员变量放置一些图片的数据，</p>
+<pre><code class="language-java">private List&lt;Integer&gt; m_colors = null;
+</code></pre>
+<pre><code class="language-java">@Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        ImageView imageView = new ImageView(container.getContext());
+        imageView.setBackgroundColor(m_colors.get(position));
+        container.addView(imageView);
+        return imageView;
+    }
+</code></pre>
+<pre><code class="language-java">@Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((View) object);
+    }
+</code></pre>
+<p><strong>instantiateItem</strong> 方法表示为每个轮播图中的 View 进行初始化，<strong>destroyItem</strong> 方法用于移除一个 View 。</p>
+<p>在类中还有<strong>getCount</strong> 和 <strong>isViewFromObject</strong> 两个方法，实现都比较简单：</p>
+<pre><code class="language-java">@Override
+    public int getCount() {
+        if (m_colors != null) {
+            return m_colors.size();
+        }
+        return 0;
+    }
+</code></pre>
+<pre><code class="language-java">@Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view==object;
+    }
+</code></pre>
+<p>接着在活动中进行初始化View以及初始化数据，并且在活动中创建PageLooperAdaper成员变量</p>
+<pre><code class="language-java">private ViewPager m_looper;
+private PageLooperAdapter m_pageLooperAdapter;
+private List&lt;Integer&gt; colors = new ArrayList&lt;&gt;();
+</code></pre>
+<p>在<strong>onCreate</strong>方法中写入以下代码：</p>
+<pre><code class="language-java">m_pageLooperAdapter.setData(colors);
+//m_pageLooperAdapter.notifyDataSetChanged();
+m_looper.setAdapter(m_pageLooperAdapter);
+</code></pre>
+<p>至此，已经初步实现了轮播图，注意：此处图片只设定了背景颜色，如果要添加图片，在<strong>instantiateItem</strong> 方法中需要添加<strong>setImageResourse（）</strong></p>
+</li>
+</ul>
+
+            </div>
+            
+              <div class="tag-container">
+                
+                  <a href="https://patrick00017.github.io/tag/gnmifi4eE/" class="tag">
+                    Java
+                  </a>
+                
+                  <a href="https://patrick00017.github.io/tag/s6GsnZBGM5/" class="tag">
+                    Android
+                  </a>
+                
+              </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://patrick00017.github.io/post/springboot-xue-xi-guo-cheng-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin/">
+                  <h3 class="post-title">
+                    SpringBoot学习过程中的一些问题（持续更新）
+                  </h3>
+                </a>
+              </div>
+            
+
+            
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
+  </body>
+</html>

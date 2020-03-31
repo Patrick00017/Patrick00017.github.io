@@ -1,15 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://patrick00017.github.io/</id>
+    <id>https://patrick00017.github.io</id>
     <title>Patrick Lifecycle</title>
-    <updated>2020-03-28T13:43:17.196Z</updated>
+    <updated>2020-03-31T06:10:32.770Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://patrick00017.github.io/"/>
+    <link rel="alternate" href="https://patrick00017.github.io"/>
     <link rel="self" href="https://patrick00017.github.io/atom.xml"/>
     <subtitle>up up up</subtitle>
     <logo>https://patrick00017.github.io/images/avatar.png</logo>
     <icon>https://patrick00017.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Patrick Lifecycle</rights>
+    <entry>
+        <title type="html"><![CDATA[安卓学习中的一些问题（持续更新）]]></title>
+        <id>https://patrick00017.github.io/post/an-zhuo-xue-xi-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin/</id>
+        <link href="https://patrick00017.github.io/post/an-zhuo-xue-xi-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin/">
+        </link>
+        <updated>2020-03-31T06:01:13.000Z</updated>
+        <content type="html"><![CDATA[<h3 id="1轮播图的实现">1.轮播图的实现</h3>
+<ul>
+<li>
+<p>基础实现：</p>
+<p>在布局文件中加入 <strong>ViewPager</strong></p>
+<pre><code class="language-xml">&lt;androidx.viewpager.widget.ViewPager    
+ android:id=&quot;@+id/looper&quot;  
+ android:layout_width=&quot;match_parent&quot;   
+ android:layout_height=&quot;200dp&quot;/&gt;
+</code></pre>
+<p>创建<strong>PageLooperAdapter</strong>适配器类，继承自<strong>PageAdapter</strong> ，然后重载两个方法，分别是 <strong>instantiateItem</strong> 和 <strong>destroyItem</strong> ，代码如下所示：</p>
+<p>首先创建成员变量放置一些图片的数据，</p>
+<pre><code class="language-java">private List&lt;Integer&gt; m_colors = null;
+</code></pre>
+<pre><code class="language-java">@Override
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        ImageView imageView = new ImageView(container.getContext());
+        imageView.setBackgroundColor(m_colors.get(position));
+        container.addView(imageView);
+        return imageView;
+    }
+</code></pre>
+<pre><code class="language-java">@Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((View) object);
+    }
+</code></pre>
+<p><strong>instantiateItem</strong> 方法表示为每个轮播图中的 View 进行初始化，<strong>destroyItem</strong> 方法用于移除一个 View 。</p>
+<p>在类中还有<strong>getCount</strong> 和 <strong>isViewFromObject</strong> 两个方法，实现都比较简单：</p>
+<pre><code class="language-java">@Override
+    public int getCount() {
+        if (m_colors != null) {
+            return m_colors.size();
+        }
+        return 0;
+    }
+</code></pre>
+<pre><code class="language-java">@Override
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view==object;
+    }
+</code></pre>
+<p>接着在活动中进行初始化View以及初始化数据，并且在活动中创建PageLooperAdaper成员变量</p>
+<pre><code class="language-java">private ViewPager m_looper;
+private PageLooperAdapter m_pageLooperAdapter;
+private List&lt;Integer&gt; colors = new ArrayList&lt;&gt;();
+</code></pre>
+<p>在<strong>onCreate</strong>方法中写入以下代码：</p>
+<pre><code class="language-java">m_pageLooperAdapter.setData(colors);
+//m_pageLooperAdapter.notifyDataSetChanged();
+m_looper.setAdapter(m_pageLooperAdapter);
+</code></pre>
+<p>至此，已经初步实现了轮播图，注意：此处图片只设定了背景颜色，如果要添加图片，在<strong>instantiateItem</strong> 方法中需要添加<strong>setImageResourse（）</strong></p>
+</li>
+</ul>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[SpringBoot学习过程中的一些问题（持续更新）]]></title>
         <id>https://patrick00017.github.io/post/springboot-xue-xi-guo-cheng-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin/</id>
@@ -19,6 +82,8 @@
         <content type="html"><![CDATA[<h2 id="1responsebody无法使用">1.@ResponseBody无法使用</h2>
 <pre><code>解决办法：
 在pom.xml中添加下列依赖：
+
+'''xml
 &lt;dependency&gt;
         &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
         &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
@@ -35,7 +100,7 @@
         &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;
         &lt;version&gt;2.9.5&lt;/version&gt;
 </code></pre>
-</dependency>
+<p></dependency>'''</p>
 <h2 id="2官方文档查询">2.官方文档查询</h2>
 <p>解决办法：使用 <strong>ctrl+F</strong> 进行文档搜索</p>
 ]]></content>

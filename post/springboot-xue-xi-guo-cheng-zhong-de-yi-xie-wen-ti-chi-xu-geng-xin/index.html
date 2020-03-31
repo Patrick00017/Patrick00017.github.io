@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://patrick00017.github.io//favicon.ico?v=1585402985727">
-<link rel="stylesheet" href="https://patrick00017.github.io//styles/main.css">
+<link rel="shortcut icon" href="https://patrick00017.github.io/favicon.ico?v=1585635002186">
+<link rel="stylesheet" href="https://patrick00017.github.io/styles/main.css">
 
 
 
@@ -28,8 +28,8 @@
       <div class="sidebar" :class="{ 'full-height': menuVisible }">
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
-      <a class="site-title-container" href="https://patrick00017.github.io/">
-        <img src="https://patrick00017.github.io//images/avatar.png?v=1585402985727" class="site-logo">
+      <a class="site-title-container" href="https://patrick00017.github.io">
+        <img src="https://patrick00017.github.io/images/avatar.png?v=1585635002186" class="site-logo">
         <h1 class="site-title">Patrick Lifecycle</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -94,13 +94,15 @@
             <h2 class="post-title">SpringBoot学习过程中的一些问题（持续更新）</h2>
             <div class="post-date">2020-03-28</div>
             
-              <div class="feature-container" style="background-image: url('https://patrick00017.github.io//post-images/springboot-xue-xi-guo-cheng-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin.jpg')">
+              <div class="feature-container" style="background-image: url('https://patrick00017.github.io/post-images/springboot-xue-xi-guo-cheng-zhong-de-yi-xie-wen-ti-chi-xu-geng-xin.jpg')">
               </div>
             
             <div class="post-content">
               <h2 id="1responsebody无法使用">1.@ResponseBody无法使用</h2>
 <pre><code>解决办法：
 在pom.xml中添加下列依赖：
+
+'''xml
 &lt;dependency&gt;
         &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
         &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
@@ -117,7 +119,7 @@
         &lt;artifactId&gt;jackson-annotations&lt;/artifactId&gt;
         &lt;version&gt;2.9.5&lt;/version&gt;
 </code></pre>
-</dependency>
+<p></dependency>'''</p>
 <h2 id="2官方文档查询">2.官方文档查询</h2>
 <p>解决办法：使用 <strong>ctrl+F</strong> 进行文档搜索</p>
 
